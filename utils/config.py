@@ -1,0 +1,2 @@
+PRIME = 'prime'
+COMPOSITE = 'composite'
