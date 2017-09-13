@@ -1,5 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
-Будет удалено .idea/
-Будет удалено theme1/__pycache__/
-Будет удалено utils/__pycache__/
-Будет удалено .idea/workspace.xml
+.idea/
+theme1/__pycache__/
+utils/__pycache__/
