@@ -57,6 +57,7 @@ class FiniteField:
 if __name__ == '__main__':
     p1 = Polynomial([1, 2, 3, 4, 5])
     p2 = Polynomial([3, 4, 5])
-    pmn = Polynomial([-1, 2])
+    pmn = Polynomial([-1, 2, 4])
     ff = FiniteField(7, pmn)
-    print(ff.add(p1, p2))
+    print(ff.mul(p1, p2))
+    print(ff.mod_polynomial(ff.mul(p1, p2)))
