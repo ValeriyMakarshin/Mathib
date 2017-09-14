@@ -32,3 +32,16 @@ def fast_mod_pow(x: int, a: int, n: int) -> int:
             result *= x
         result = (result * result) % n
     return result if a & 1 == 0 else result * x % n
+
+
+def egcd(a: int, b: int) -> (int, int, int):
+    if a == 0:
+        return b, 0, 1
+    else:
+        g, x, y = egcd(b % a, a)
+        return g, y - (b // a) * x, x
+
+
+def mod_inv(b: int, n: int) -> int:
+    g, x, _ = egcd(b, n)
+    return x % n if g == 1 else None
