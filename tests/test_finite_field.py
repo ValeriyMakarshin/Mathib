@@ -4,9 +4,9 @@ from theme1.finite_field import FiniteField
 from theme1.polynomial import Polynomial
 
 
-class TestArithmeticCase(unittest.TestCase):
+class TestFiniteFieldCase(unittest.TestCase):
     ff1 = FiniteField(5)
-    ff2 = FiniteField(11)
+    ff2 = FiniteField(11, Polynomial([-1, 2]))
     lst1 = Polynomial([1, 2, 3, 4])
     lst2 = Polynomial([-5, 7])
     lst3 = Polynomial([8, 2, 1])
@@ -39,6 +39,11 @@ class TestArithmeticCase(unittest.TestCase):
     def test_mul_3(self):
         self.assertEqual(Polynomial([4, 2, 9, 7]), self.ff2.mul(self.lst2, self.lst3))
 
+    def test_mod_polynomial_1(self):
+        self.assertEqual(Polynomial([3]), self.ff2.mod_polynomial(Polynomial([4, 20, -9, 7])))
+
+    def test_mod_polynomial_2(self):
+        self.assertEqual(Polynomial([4, 0, 1, 2]), self.ff1.mod_polynomial(Polynomial([4, 20, -9, 7])))
 
 if __name__ == '__main__':
     unittest.main()

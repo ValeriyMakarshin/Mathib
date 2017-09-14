@@ -45,3 +45,4 @@ def egcd(a: int, b: int) -> (int, int, int):
 def mod_inv(b: int, n: int) -> int:
     g, x, _ = egcd(b, n)
     return x % n if g == 1 else None
+
