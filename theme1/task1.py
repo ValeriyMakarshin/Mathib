@@ -4,7 +4,6 @@ from utils.arithmetic import find_prime_numbers
 def fun_euler(n):
     result = 1
     dividers = {k: 0 for _, k in enumerate(find_prime_numbers(int(n)))}
-    dividers
     used_dividers = set()
     for i in dividers:
         while n % i == 0:

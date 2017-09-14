@@ -1,3 +1,11 @@
+def find_st(n: int) -> (int, int):
+    s = 0
+    t = n - 1
+    while t % 2 == 0:
+        s += 1
+        t >>= 1
+    return s, t
+
 
 def find_prime_numbers(n: int) -> list:
     n = abs(n) + 1
@@ -13,3 +21,14 @@ def find_prime_numbers(n: int) -> list:
                 numbers[j] = False
 
     return prime_numbers
+
+
+def fast_mod_pow(x: int, a: int, n: int) -> int:
+    x %= n
+    a %= n
+    result = 1
+    for i in '{0:b}'.format(a)[:-1]:
+        if i == '1':
+            result *= x
+        result = (result * result) % n
+    return result if a & 1 == 0 else result * x % n

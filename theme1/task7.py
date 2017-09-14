@@ -1,15 +1,7 @@
-import random
+from random import randint
 
-
-def fast_mod_pow(x: int, a: int, n: int) -> int:
-    x %= n
-    a %= n
-    result = 1
-    for i in '{0:b}'.format(a)[:-1]:
-        if i == '1':
-            result *= x
-        result = (result * result) % n
-    return result if a & 1 == 0 else result * x % n
+from theme1.task6 import is_prime_witnesses
+from utils.arithmetic import find_st
 
 
 def is_prime_mr(n: int, k: int = None) -> bool:
@@ -17,24 +9,14 @@ def is_prime_mr(n: int, k: int = None) -> bool:
     if n <= 3:
         return True
 
-    s = 0
-    t = n - 1
-    while t % 2 == 0:
-        s += 1
-        t >>= 1
+    s, t = find_st(n)
 
     for _ in range(k if k is not None else len('{0:b}'.format(n))):
-        a = random.randint(2, n - 2)
-        x = fast_mod_pow(a, t, n)
-        if x == 1 or x == n - 1:
+        a = randint(2, n - 2)
+        if is_prime_witnesses(a, n, s, t):
             continue
-        for _ in range(s - 1):
-            x = fast_mod_pow(x, 2, n)
-            if x == 1:
-                return False
-            if x == n - 1:
-                continue
-        return False
+        else:
+            return False
     return True
 
 
