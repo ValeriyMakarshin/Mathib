@@ -45,5 +45,10 @@ class TestFiniteFieldCase(unittest.TestCase):
     def test_mod_polynomial_2(self):
         self.assertEqual(Polynomial([4, 0, 1, 2]), self.ff1.mod_polynomial(Polynomial([4, 20, -9, 7])))
 
+    def test_mod_polynomial_3(self):
+        self.assertEqual(Polynomial([1, 0, 0, 1]),
+                         FiniteField(10, Polynomial([-1, 6])).mod_polynomial(Polynomial([1, 7, -3, 4, 8])))
+
+
 if __name__ == '__main__':
     unittest.main()

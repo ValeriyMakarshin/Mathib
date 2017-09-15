@@ -1,5 +1,5 @@
 from theme1.polynomial import Polynomial
-from utils.arithmetic import mod_inv
+from utils.arithmetic import egcd
 
 
 class FiniteField:
@@ -40,37 +40,20 @@ class FiniteField:
             return pol
         result = pol
 
-        a = mod_inv(self.mn[-1], self.n)
+        d, a, _ = egcd(self.mn[-1], self.n)
 
         # print('polynomial = {0}\na = {1}'.format(pol, a))
 
-        # if a is not None:
-        #     for i in reversed(range(len(pol) - len(self.mn) + 1)):
-        #         temp = (a * result[i + len(self.mn) - 1] % self.n)
-        #         for index, v in reversed(list(enumerate(self.mn))):
-        #             result[index + i] -= temp * v
-        #         # print(result)
-        #         result = Polynomial(list(j % self.n for j in result))
-        # else
-        #     for i in reversed(range(len(pol) - len(self.mn) + 1)):
-        #         temp = (a * result[i + len(self.mn) - 1] % self.n)
-        #         for index, v in reversed(list(enumerate(self.mn))):
-        #             result[index + i] -= temp * v
-        #         # print(result)
-        #         result = Polynomial(list(j % self.n for j in result))
-
         for i in reversed(range(len(pol) - len(self.mn) + 1)):
-            temp = (a * result[i + len(self.mn) - 1] % self.n) if a is not None \
-                else result[i + len(self.mn) - 1] // pmn[-1]
+            temp = int((a * result[i + len(self.mn) - 1] / d) % (self.n / d)) if result[i + len(self.mn) - 1] % d == 0 \
+                else result[i + len(self.mn) - 1] // self.mn[-1]
             for index, v in reversed(list(enumerate(self.mn))):
                 result[index + i] -= temp * v
                 # print(result)
             result = Polynomial(list(j % self.n for j in result))
+            # print(result)
         return result
 
 
 if __name__ == '__main__':
-    p1 = Polynomial([1, 7, -3, 4, 8])
-    pmn = Polynomial([-1, 2])
-    ff = FiniteField(14, pmn)
-    print(ff.mod_polynomial(p1))
+    pass
