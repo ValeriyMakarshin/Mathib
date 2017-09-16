@@ -48,8 +48,4 @@ def mod_inv(b: int, n: int) -> int:
 
 
 if __name__ == '__main__':
-    print(egcd(8, 10))
-    6 * 8
-    print(egcd(4, 5))
-
-    print(3 * -1)
+    pass
