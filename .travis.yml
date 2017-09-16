@@ -7,4 +7,4 @@ python:
 install:
   - pip3 install -r requirements.txt
 script:
-  - py.test # or py.test for Python versions 3.5 and below
+  - pytest3 # or py.test for Python versions 3.5 and below
